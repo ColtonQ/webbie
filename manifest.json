@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "Web Watch",
-    "description": "A simple website tracking extension.",
+    "name": "Webbie",
+    "description": "Track your time on websites for Chrome.",
     "version": "1.0",
     "icons": {
         "128": "icon128.png",
@@ -17,7 +17,7 @@
 
     "background": {
         "scripts": [ "backgroundPage.js" ],
-        "presistent":  true
+        "presistent": true
     },
 
     "permissions": [
@@ -27,5 +27,5 @@
     ],
 
     "web_accessible_resources": [ "logo.png" ]
-    
+
 }
