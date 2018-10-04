@@ -16,33 +16,54 @@
                 domain = url.hostname;
             }
 
-            if (typeof myStorage.timers != "undefined" && typeof myStorage.websites != "undefined") {
-                var itemCurrentWebsite = document.createElement("h3");
-                var itemCurrentTimer = document.createElement("h3");
-                var itemCurrentImage = document.createElement("img");
-                itemCurrentImage.width = "16";
-                itemCurrentImage.height = itemCurrentImage.width;
-                itemCurrentImage.className = "small";
-                var currentTimer;
-                if (typeof domain != "undefined") {
-                    itemCurrentWebsite.innerHTML = domain;
-                    itemCurrentImage.src = "http://www.google.com/s2/favicons?domain=" + domain;
-                    if (myStorage.websites.includes(domain)) {
-                        var index = myStorage.websites.indexOf(domain);
-                        currentTimer = displayTimer(myStorage.timers[index]);
-                        itemCurrentTimer.innerHTML = currentTimer.toString();
-                    } else {
-                        itemCurrentTimer.innerHTML = "<1 min";
-                    }
+
+            //if (typeof myStorage.timers != "undefined" && typeof myStorage.websites != "undefined") {
+            //    var itemCurrentWebsite = document.createElement("h3");
+            //    var itemCurrentTimer = document.createElement("h3");
+            //    var itemCurrentImage = document.createElement("img");
+            //    itemCurrentImage.width = "16";
+            //    itemCurrentImage.height = itemCurrentImage.width;
+            //    itemCurrentImage.className = "small";
+            //    var currentTimer;
+            //    if (typeof domain != "undefined") {
+            //        itemCurrentWebsite.innerHTML = domain;
+            //        itemCurrentImage.src = "http://www.google.com/s2/favicons?domain=" + domain;
+            //        if (myStorage.websites.includes(domain)) {
+            //            var index = myStorage.websites.indexOf(domain);
+            //            currentTimer = displayTimer(myStorage.timers[index]);
+            //            itemCurrentTimer.innerHTML = currentTimer.toString();
+            //        } else {
+            //            itemCurrentTimer.innerHTML = "<1 min";
+            //        }
+            //    } else {
+            //        itemCurrentTimer.innerHTML = ":)";
+            //    }
+
+            var itemCurrentWebsite = document.createElement("h3");
+            var itemCurrentTimer = document.createElement("h3");
+            var itemCurrentImage = document.createElement("img");
+            itemCurrentImage.width = "16";
+            itemCurrentImage.height = itemCurrentImage.width;
+            itemCurrentImage.className = "small";
+            var currentTimer;
+            if (typeof domain != undefined) {
+                itemCurrentWebsite.innerHTML = domain;
+                itemCurrentImage.src = "http://www.google.com/s2/favicons?domain=" + domain;
+                if (typeof myStorage.timers != "undefined" && typeof myStorage.websites != "undefined" &&
+                    myStorage.websites.includes(domain)) {
+                    var index = myStorage.websites.indexOf(domain);
+                    currentTimer = displayTimer(myStorage.timers[index]);
+                    itemCurrentTimer.innerHTML = currentTimer.toString();
                 } else {
-                    itemCurrentTimer.innerHTML = ":)";
+                    itemCurrentTimer.innerHTML = "<1 min";
                 }
+            }
 
-                document.body.insertBefore(itemCurrentImage, currentSpaceTag);
-                document.body.insertBefore(itemCurrentWebsite, currentSpaceTag);
-                document.body.insertBefore(itemCurrentTimer, currentSpaceTag);
+            document.body.insertBefore(itemCurrentImage, currentSpaceTag);
+            document.body.insertBefore(itemCurrentWebsite, currentSpaceTag);
+            document.body.insertBefore(itemCurrentTimer, currentSpaceTag);
 
-                
+            if (typeof myStorage.websites != "undefined" || typeof myStorage.timers != "undefined") {
                 var limit = Math.min(myStorage.websites.length, 5);
                 //limit = myStorage.websites.length;
                 for (i = 0; i < limit; i++) {
@@ -64,8 +85,8 @@
 
                 }
             }
-
         });
+    });
 
         //if (typeof myStorage.timers != "undefined" && typeof myStorage.websites != "undefined") {
         //    var itemCurrentWebsite = document.createElement("h3");
@@ -106,8 +127,8 @@
 
         //    }
         //}
-        
-    });
+
+});
 
     $("#reset").click(function () {
         chrome.storage.sync.set({ "websites": [] });
@@ -137,4 +158,3 @@
     //    num.appendChild(numVal);
     //    document.body.insertBefore(num, addTextTag);
     //});
-});
