@@ -3,7 +3,7 @@
 
     "name": "Webbie",
     "description": "Track your time on websites for Chrome.",
-    "version": "1.3",
+    "version": "1.4",
     "icons": {
         "128": "icon128.png",
         "48": "icon48.png",

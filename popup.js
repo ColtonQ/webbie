@@ -1,7 +1,9 @@
 ﻿$(function () {
+    var resetButton = document.getElementById("reset");
+    resetButton.addEventListener("click", reset);
 
     chrome.storage.sync.get(["websites", "timers"], function (myStorage) {
-        var itemWebsite, itemTimer, itemImage, spaceTag, currentSpaceTag, domain;
+        var spaceTag, currentSpaceTag, domain;
         spaceTag = document.getElementById("space");
         currentSpaceTag = document.getElementById("currentSpace");
 
@@ -11,50 +13,11 @@
                 domain = url.hostname;
             }
 
-            //var itemCurrentWebsite = document.createElement("h3");
-            //var itemCurrentTimer = document.createElement("h3");
-            //var itemCurrentImage = document.createElement("img");
-            //itemCurrentImage.width = "16";
-            //itemCurrentImage.height = itemCurrentImage.width;
-            //itemCurrentImage.className = "small";
-            //var currentTimer;
-            //if (typeof domain != undefined) {
-            //    itemCurrentWebsite.innerHTML = domain;
-            //    itemCurrentImage.src = "http://www.google.com/s2/favicons?domain=" + domain;
-            //    if (typeof myStorage.timers != "undefined" && typeof myStorage.websites != "undefined" &&
-            //        myStorage.websites.includes(domain)) {
-            //        var index = myStorage.websites.indexOf(domain);
-            //        currentTimer = displayTimer(myStorage.timers[index]);
-            //        itemCurrentTimer.innerHTML = currentTimer.toString();
-            //    } else {
-            //        itemCurrentTimer.innerHTML = "<1 min";
-            //    }
-            //}
-
-            //document.body.insertBefore(itemCurrentImage, currentSpaceTag);
-            //document.body.insertBefore(itemCurrentWebsite, currentSpaceTag);
-            //document.body.insertBefore(itemCurrentTimer, currentSpaceTag);
             displayItem(myStorage.websites, myStorage.timers, "h3", domain, currentSpaceTag);
 
             if (typeof myStorage.websites != "undefined" || typeof myStorage.timers != "undefined") {
                 var limit = Math.min(myStorage.websites.length, 5);
-                //limit = myStorage.websites.length;
                 for (i = 0; i < limit; i++) {
-
-                    //itemWebsite = document.createElement("p");
-                    //itemWebsite.innerHTML = myStorage.websites[i];
-                    //itemTimer = document.createElement("p");
-                    //itemTimer.innerHTML = displayTimer(myStorage.timers[i]);
-
-                    //itemImage = document.createElement("img");
-                    //itemImage.height = "16";
-                    //itemImage.width = itemImage.height;
-                    //itemImage.className = "small";
-                    //itemImage.src = "http://www.google.com/s2/favicons?domain=" + myStorage.websites[i];
-
-                    //document.body.insertBefore(itemImage, spaceTag);
-                    //document.body.insertBefore(itemWebsite, spaceTag);
-                    //document.body.insertBefore(itemTimer, spaceTag);
                     displayItem(myStorage.websites, myStorage.timers, "p", myStorage.websites[i], spaceTag);
 
                 }
@@ -63,10 +26,10 @@
     });
 });
 
-$("#reset").click(function () {
+function reset() {
     chrome.storage.sync.set({ "websites": [] });
     chrome.storage.sync.set({ "timers": [] });
-});
+};
 
 function displayItem(websites, timers, tag, domain, placementTag) {
     var itemWebsite, itemTimer, itemImage;
