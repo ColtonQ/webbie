@@ -25,6 +25,9 @@
         "tabs"
     ],
 
-    "web_accessible_resources": [ "logo.png" ]
+    "web_accessible_resources": [
+        "logo.png",
+        "file.png"
+    ]
 
 }
